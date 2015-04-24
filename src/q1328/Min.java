@@ -1,30 +1,43 @@
 package q1328;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Min {
+	public static void main(String[] args) {
+		Scanner s = new Scanner(System.in);
+		int N = s.nextInt();
+		int[] buildings = new int[N];
+		int[] answer = new int[N];
+		int current = 0;
+		List<Integer> list = new ArrayList<Integer>();
 
-    // Time limit Exceed
-    public static void main(String[] args) {
-        Scanner s = new Scanner(System.in);
-        int N = s.nextInt();
-        int[] buildings = new int[N];
-        int[] answer = new int[N];
+		for (int i = 0; i < N; i++) {
+			buildings[i] = s.nextInt();
 
-        for (int i = 0; i < N; i++) {
-            buildings[i] = s.nextInt();
+			int size = list.size();
+			for (int j = size - 1; j >= 0; j--) {
+				if (buildings[i] > buildings[list.get(j)]) {
+					answer[list.get(j)] = i + 1;
+					list.remove(j);
+				}
+			}
 
-            for (int j = 0; j < i; j++) {
-                if (buildings[i] > buildings[j]) {
-                    if (answer[j] == 0) {
-                        answer[j] = i + 1;
-                    }
-                }
-            }
-        }
+			if (i != 0 && buildings[i] > buildings[i - 1]) {
+				for (int j = current; j < i; j++) {
+					if (buildings[i] > buildings[j]) {
+						answer[j] = i + 1;
+					} else {
+						list.add(j);
+					}
+				}
+				current = i;
+			}
+		}
 
-        for (int item : answer) {
-            System.out.println(item);
-        }
-    }
+		for (int i = 0; i < N; i++) {
+			System.out.println(answer[i]);
+		}
+	}
 }
