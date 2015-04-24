@@ -12,29 +12,26 @@ public class Min {
         int[] buildings = new int[N];
         int[] answer = new int[N];
         int current = 0;
-        List<Integer> list = new ArrayList<Integer>();
+        boolean exist = false;
 
         for (int i = 0; i < N; i++) {
             buildings[i] = s.nextInt();
 
-            int size = list.size();
-            for (int j = size - 1; j >= 0; j--) {
-                if (buildings[i] > buildings[list.get(j)]) {
-                    answer[list.get(j)] = i + 1;
-                    list.remove(j);
-                }
-            }
-
             if (i != 0 && buildings[i] > buildings[i - 1]) {
+                exist = false;
                 for (int j = current; j < i; j++) {
+                    if (answer[j] != 0) continue;
+
                     if (buildings[i] > buildings[j]) {
                         answer[j] = i + 1;
                     }
                     else {
-                        list.add(j);
+                        exist = true;
                     }
                 }
-                current = i;
+                if (!exist) {
+                    current = i;
+                }
             }
         }
 
