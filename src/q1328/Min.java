@@ -19,15 +19,18 @@ public class Min {
 			int size = list.size();
 			for (int j = size - 1; j >= 0; j--) {
 				if (buildings[i] > buildings[list.get(j)]) {
-					answer[list.get(j)] = i + 1;
+					answer[list.get(j)] = i;
 					list.remove(j);
+				}
+				else {
+					break;
 				}
 			}
 
 			if (i != 0 && buildings[i] > buildings[i - 1]) {
 				for (int j = current; j < i; j++) {
 					if (buildings[i] > buildings[j]) {
-						answer[j] = i + 1;
+						answer[j] = i;
 					} else {
 						list.add(j);
 					}
@@ -37,7 +40,7 @@ public class Min {
 		}
 
 		for (int i = 0; i < N; i++) {
-			System.out.println(answer[i]);
+			System.out.println(answer[i] == 0 ? 0 : answer[i] + 1);
 		}
 	}
 }
