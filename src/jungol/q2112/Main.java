@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 /**
  * Created by hope on 2016. 9. 20..
+ * 참조 : http://m.blog.naver.com/dldbdgml99/220002222967
  */
 public class Main {
     public static void main(String[] args) {
