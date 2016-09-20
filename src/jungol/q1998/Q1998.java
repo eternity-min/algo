@@ -1,4 +1,4 @@
-package q1998;
+package jungol.q1998;
 import java.util.Scanner;
 
 public class Q1998 {

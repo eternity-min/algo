@@ -1,4 +1,4 @@
-package q1337;
+package jungol.q1337;
 import java.util.Scanner;
 
 public class Q1337 {
